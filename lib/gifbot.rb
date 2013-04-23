@@ -55,6 +55,13 @@ module GifBot
           urls
         end
 
+        def randomfive
+          urls=""
+          for i in 1..5
+            urls << "\n"+random
+          end
+          urls
+        end
         def topfive(query)
 
           query   = CGI.escape(query)
@@ -93,7 +100,10 @@ module GifBot
       on :message, /^?topfive (.+)/ do |m, query|
         m.reply topfive(query)
       end
-      
+    
+      on :message, /^?randomfive/ do |m|
+        m.reply randomfive
+      end  
     end
     
     bot.start
