@@ -62,6 +62,7 @@ module GifBot
           end
           urls
         end
+
         def topfive(query)
 
           query   = CGI.escape(query)
@@ -87,23 +88,52 @@ module GifBot
           end
 	  urls
         end
+
+        def fukung
+          fukung_url = "http://fukung.net/random"
+          results = Nokogiri::HTML( open("#{fukung_url}") )
+          source = results.xpath('//img[@class="fukung"]').first['src']
+          print source
+          source
+        end
+
+        def fukungsfw
+          fukung_url = "http://fukung.net/v"
+          results = Nokogiri::HTML( open("#{fukung_url}") )
+          source = results.xpath('//img[@class="fukung"]').first['src']
+          print source
+          source  
+        end
+
       end
       
-      on :message, /^?randomgif/ do |m|
+      on :message, /^\?randomgif/ do |m|
         m.reply random
       end
       
-      on :message, /^?gifme (.+)/ do  |m, query|
+      on :message, /^\?gifme (.+)/ do  |m, query|
         m.reply search(query)
       end
 
-      on :message, /^?topfive (.+)/ do |m, query|
+      on :message, /^\?topfive (.+)/ do |m, query|
         m.reply topfive(query)
       end
     
-      on :message, /^?randomfive/ do |m|
+      on :message, /^\?randomfive/ do |m|
         m.reply randomfive
-      end  
+      end 
+
+      on :message, /^\?fukungnsfw/ do |m|
+        m.reply fukung
+      end
+
+      on :message, /^\?fukungsfw/ do |m|
+        m.reply fukungsfw
+      end 
+
+      on :message, /^\?fukung/ do |m|
+        m.reply fukungsfw
+      end 
     end
     
     bot.start
