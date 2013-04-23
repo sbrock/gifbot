@@ -119,19 +119,19 @@ module GifBot
         m.reply topfive(query)
       end
     
-      on :message, /^\?randomfive/ do |m|
+      on :message, /^\?randomfive$/ do |m|
         m.reply randomfive
       end 
 
-      on :message, /^\?fukungnsfw/ do |m|
+      on :message, /^\?fukungnsfw$/ do |m|
         m.reply fukung
       end
 
-      on :message, /^\?fukungsfw/ do |m|
+      on :message, /^\?fukungsfw$/ do |m|
         m.reply fukungsfw
       end 
 
-      on :message, /^\?fukung/ do |m|
+      on :message, /^\?fukung$/ do |m|
         m.reply fukungsfw
       end 
     end
